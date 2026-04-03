@@ -1,4 +1,3 @@
-import mlflow
 import joblib
 import streamlit as st
 import os
