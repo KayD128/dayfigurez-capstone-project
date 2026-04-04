@@ -1,9 +1,9 @@
-import mlflow
 import joblib
 import streamlit as st
-import os
 from PIL import Image
 import numpy as np
+import xgboost
+
 
 st.set_page_config(page_title="Loan Classification", layout="wide")
 
@@ -107,6 +107,12 @@ with right_col:
     if st.button("Predict Result"):
             input_array = prepare_input(user_data, features)
             prediction = model.predict(input_array)
+            value = prediction[0]
             st.subheader("Predicted Result")
             st.write(prediction)
+            if value == 0:
+                st.success("No default on payment")
+            else:
+                st.error("Customer will default on payment")
 
+            
